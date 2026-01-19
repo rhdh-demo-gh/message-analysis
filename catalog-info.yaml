@@ -1,0 +1,37 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: message-analysis
+  title: Message-analysis AI Agent
+  description: message analysis
+  tags:
+    - ai
+    - langchain
+    - kafka
+    - python
+    - monitoring
+    - notifications
+  annotations:
+    argocd/app-selector: backstage.io/app=message-analysis
+    backstage.io/kubernetes-id: message-analysis
+    backstage.io/source-location: url:https://github.com/rhdh-demo-gh/message-analysis
+    github.com/project-slug: rhdh-demo-gh/message-analysis
+    github.com/workflows: build.yaml
+  links:
+    - url: https://devspaces.apps.cluster-nz5zn.nz5zn.sandbox5486.opentlc.com/#https://github.com/rhdh-demo-gh/message-analysis
+      title: OpenShift Dev Spaces (VS Code)
+      icon: web
+    - url: https://devspacesapps.apps.cluster-nz5zn.nz5zn.sandbox5486.opentlc.com/#https://github.com/rhdh-demo-gh/message-analysis?che-editor=che-incubator/che-idea/latest
+      title: OpenShift Dev Spaces (JetBrains IntelliJ)
+      icon: web
+spec:
+  type: service
+  lifecycle: experimental
+  owner: user:default/btison
+  system: system:default/ai-customer-service-platform
+  dependsOn:
+    - resource:kafka-message-broker
+    - resource:default/kafka-topic-review
+    - resource:openai-service
+  providesApis: []
+  consumesApis: [] 
